@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title book.title %}
+
+{% block page %}
+    <div class="row">
+        <div class="col-lg-4 text-center">
+            <img src="{{ asset(book.image) }}" class="img-fluid" />
+        </div>
+
+        <div class="col-lg-8">
+            <h3>
+                {{ book.title }}
+            </h3>
+
+            <p>
+                {{ book.description }}
+            </p>
+
+            <a href="{{ path('book_add_to_cart', {'id': book.id}) }}" class="btn btn-primary">
+                Add to my cart
+            </a>
+        </div>
+    </div>
+{% endblock %}

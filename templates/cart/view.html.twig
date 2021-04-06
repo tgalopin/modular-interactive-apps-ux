@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title 'My cart' %}
+
+{% block page %}
+    {% if cart|length > 0 %}
+        <div class="row">
+            {% for book, quantity in cart.books %}
+                <div class="col-md-3 col-lg-1 mb-3">
+                    <img src="{{ asset(book.image) }}" class="img-fluid" />
+                </div>
+
+                <div class="col-md-9 col-lg-11 mb-3">
+                    <strong>
+                        {{ book.title }} x{{ quantity }}
+                    </strong>
+
+                    <p>
+                        {{ book.description }}
+                    </p>
+
+                    <div class="row">
+                        <div class="col-md-auto">
+                            <a href="{{ path('my_cart_remove', {'id': book.id}) }}" class="btn btn-danger">
+                                Remove
+                            </a>
+                        </div>
+
+                        <div class="col-md">
+                            <form method="get" action="{{ path('my_cart_set_quantity', {'id': book.id}) }}" class="form-inline">
+                                <div class="d-flex">
+                                    <div>
+                                        <select class="form-control" name="quantity">
+                                            {% for i in 1..10 %}
+                                                <option value="{{ i }}" {{ i == quantity ? 'selected' }}>{{ i }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <button type="submit" class="btn btn-secondary ms-1">
+                                            Update quantity
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="my-5 text-center">
+            Your cart is currently empty.
+        </div>
+    {% endif %}
+{% endblock %}

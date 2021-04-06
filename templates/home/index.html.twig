@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title 'Books' %}
+
+{% block page %}
+    <div class="row">
+        {% for book in books %}
+            <div class="col-lg-2 mb-3 position-relative">
+                <img src="{{ asset(book.image) }}" class="img-fluid" />
+
+                <a href="{{ path('book_view', {'id': book.id}) }}" class="stretched-link">
+                    <strong>
+                        {{ book.title }}
+                    </strong>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
