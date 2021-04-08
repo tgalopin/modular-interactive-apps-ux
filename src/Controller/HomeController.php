@@ -18,4 +18,12 @@ class HomeController extends AbstractController
             'books' => $repository->getBooks(),
         ]);
     }
+
+    /**
+     * @Route("/example", name="example")
+     */
+    public function example(): Response
+    {
+        /// TODO
+    }
 }
