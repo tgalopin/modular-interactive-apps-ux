@@ -18,4 +18,14 @@ class HomeController extends AbstractController
             'books' => $repository->getBooks(),
         ]);
     }
+
+    /**
+     * @Route("/about", name="about")
+     */
+    public function about(): Response
+    {
+        dump('ok');
+
+        // TODO
+    }
 }
