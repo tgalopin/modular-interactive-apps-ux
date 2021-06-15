@@ -27,10 +27,11 @@
                         </div>
 
                         <div class="col-md">
-                            <form method="get" action="{{ path('my_cart_set_quantity', {'id': book.id}) }}" class="form-inline">
+                            <form method="get" action="{{ path('my_cart_set_quantity', {'id': book.id}) }}" class="form-inline"
+                                  data-controller="cart">
                                 <div class="d-flex">
                                     <div>
-                                        <select class="form-control" name="quantity">
+                                        <select class="form-control" name="quantity" data-cart-target="selectField">
                                             {% for i in 1..10 %}
                                                 <option value="{{ i }}" {{ i == quantity ? 'selected' }}>{{ i }}</option>
                                             {% endfor %}
