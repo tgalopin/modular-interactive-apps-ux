@@ -4,8 +4,8 @@
 
 {% block page %}
     {% if cart|length > 0 %}
-        <div class="row">
-            {% for book, quantity in cart.books %}
+        {% for book, quantity in cart.books %}
+            <div class="row" id="cart-book-{{ book.id }}">
                 <div class="col-md-3 col-lg-1 mb-3">
                     <img src="{{ asset(book.image) }}" class="img-fluid" />
                 </div>
@@ -47,8 +47,8 @@
                         </div>
                     </div>
                 </div>
-            {% endfor %}
-        </div>
+            </div>
+        {% endfor %}
     {% else %}
         <div class="my-5 text-center">
             Your cart is currently empty.
