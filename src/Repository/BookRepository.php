@@ -69,7 +69,7 @@ class BookRepository
 
         foreach (self::DATA as $id => [$name, $desc]) {
             $slug = $this->slugger->slug($name)->lower();
-            $this->registry[$id] = new Book($id, $name, $slug, 'books/'.$id.'.jpg', $desc);
+            $this->registry[$id] = new Book($id, $name, $slug, 'books/'.$id.'.jpg', 'books/thumbnail-'.$id.'.jpg', $desc);
         }
     }
 }

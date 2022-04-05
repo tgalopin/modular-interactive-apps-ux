@@ -8,14 +8,16 @@ class Book
     private string $title;
     private string $slug;
     private string $image;
+    private string $thumbnail;
     private string $description;
 
-    public function __construct(string $id, string $title, string $slug, string $image, string $description)
+    public function __construct(string $id, string $title, string $slug, string $image, string $thumbnail, string $description)
     {
         $this->id = $id;
         $this->title = $title;
         $this->slug = $slug;
         $this->image = $image;
+        $this->thumbnail = $thumbnail;
         $this->description = $description;
     }
 
@@ -37,6 +39,11 @@ class Book
     public function getImage(): string
     {
         return $this->image;
+    }
+
+    public function getThumbnail(): string
+    {
+        return $this->thumbnail;
     }
 
     public function getDescription(): string
