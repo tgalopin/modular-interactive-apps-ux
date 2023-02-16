@@ -35,13 +35,11 @@ class BookRepository
         ],
     ];
 
-    private SluggerInterface $slugger;
-
     private array $registry = [];
 
-    public function __construct(SluggerInterface $slugger)
-    {
-        $this->slugger = $slugger;
+    public function __construct(
+        private readonly SluggerInterface $slugger
+    ) {
     }
 
     /**

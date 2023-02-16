@@ -4,11 +4,9 @@ namespace App\Repository\Model;
 
 class Cart implements \Countable
 {
-    private array $books;
-
-    public function __construct(array $books = [])
-    {
-        $this->books = $books;
+    public function __construct(
+        private array $books = [],
+    ) {
     }
 
     public function setQuantity(Book $book, int $quantity)
@@ -19,12 +17,12 @@ class Cart implements \Countable
         ];
     }
 
-    public function remveBook(int $id)
+    public function removeBook(int $id)
     {
         unset($this->books[$id]);
     }
 
-    public function count()
+    public function count(): int
     {
         return array_sum(array_column($this->books, 'quantity'));
     }

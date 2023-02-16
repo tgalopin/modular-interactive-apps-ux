@@ -10,8 +10,8 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class CartRepository
 {
     public function __construct(
-        private RequestStack $requestStack,
-        private BookRepository $bookRepository,
+        private readonly RequestStack $requestStack,
+        private readonly BookRepository $bookRepository,
     ) {
     }
 
@@ -20,7 +20,7 @@ class CartRepository
         $cart = new Cart();
         foreach ($this->getSession()->get('books', []) as $id => $quantity) {
             if ($book = $this->bookRepository->getBook((int) $id)) {
-                $cart->setQuantity($this->bookRepository->getBook((int) $id), $quantity);
+                $cart->setQuantity($book, $quantity);
             }
         }
 
@@ -38,7 +38,7 @@ class CartRepository
     public function removeBook(Book $book): Cart
     {
         $cart = $this->getCart();
-        $cart->remveBook($book->getId());
+        $cart->removeBook($book->getId());
 
         return $this->persist($cart);
     }

@@ -8,21 +8,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/book")
- */
+#[Route(path: '/book')]
 class BookController extends AbstractController
 {
-    private BookRepository $repository;
-
-    public function __construct(BookRepository $repository)
+    public function __construct(private readonly BookRepository $repository)
     {
-        $this->repository = $repository;
     }
 
-    /**
-     * @Route("/{id}", name="book_view")
-     */
+    #[Route(path: '/{id}', name: 'book_view')]
     public function view(int $id): Response
     {
         if (!$book = $this->repository->getBook($id)) {
@@ -34,9 +27,7 @@ class BookController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/add-to-cart", name="book_add_to_cart")
-     */
+    #[Route(path: '/{id}/add-to-cart', name: 'book_add_to_cart')]
     public function addToCart(CartRepository $cart, int $id): Response
     {
         if (!$book = $this->repository->getBook($id)) {
