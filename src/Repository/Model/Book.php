@@ -4,21 +4,14 @@ namespace App\Repository\Model;
 
 class Book
 {
-    private string $id;
-    private string $title;
-    private string $slug;
-    private string $image;
-    private string $thumbnail;
-    private string $description;
-
-    public function __construct(string $id, string $title, string $slug, string $image, string $thumbnail, string $description)
-    {
-        $this->id = $id;
-        $this->title = $title;
-        $this->slug = $slug;
-        $this->image = $image;
-        $this->thumbnail = $thumbnail;
-        $this->description = $description;
+    public function __construct(
+        private readonly string $id,
+        private readonly string $title,
+        private readonly string $slug,
+        private readonly string $image,
+        private readonly string $thumbnail,
+        private readonly string $description,
+    ) {
     }
 
     public function getId(): string

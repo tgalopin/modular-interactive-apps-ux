@@ -8,17 +8,15 @@ use Twig\TwigFunction;
 
 class CartExtension extends AbstractExtension
 {
-    private CartRepository $repository;
-
-    public function __construct(CartRepository $repository)
-    {
-        $this->repository = $repository;
+    public function __construct(
+        private readonly CartRepository $repository,
+    ) {
     }
 
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('count_cart_items', [$this, 'countCartItems']),
+            new TwigFunction('count_cart_items', $this->countCartItems(...)),
         ];
     }
 
